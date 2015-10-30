@@ -1,0 +1,57 @@
+/*
+Theme Name: A-U
+Theme URI: https://www.todoentimotes.com.ve
+Author: Marco Gutierrez
+Author URI: https://www.todoentimotes.com.ve
+Description: Tienda en Linea
+Version: 1.0
+Template: twentyten
+*/
+body{
+	font-family: 'Roboto Condensed', sans-serif;
+} 
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Lobster', cursive;
+}
+
+a{
+	color:#ff4040;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+header{
+	background: #232323;
+	border-bottom: 3px solid #ff4040;
+}
+
+.navbar-header .navbar-brand{
+	color: #fff;		
+	font-family: 'Lobster', cursive;
+	font-size: 35px;
+	margin-top: 15px;
+}
+
+.navbar{
+	margin-bottom: 0;
+}
+
+.navbar-nav > li > a{
+	color: #fff;
+	text-transform: uppercase;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav > li.current-menu-item > a{
+	background: transparent;
+	color: #ff4040;
+	text-decoration: underline;
+}
+.navbar-center{
+	margin-left: calc(50% - 270px);
+	display: block;
+	width: auto;
+	margin-top: 15px;
+}
