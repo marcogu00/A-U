@@ -24,7 +24,8 @@
 				</button>
 				<a href="<?php bloginfo('url'); ?>" class="navbar-brand">A-U</a>
 			</div>	
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<div class="collapse navbar-collapse navbar-ex1-collapse ">
+				
 				<?php wp_nav_menu(
 					array(
 					'container' => false,
@@ -37,7 +38,41 @@
 			</div>
 		</nav>
 	</header>
-	<section class="main">
+	<section class="main container">
+		
+			<h3 class="text-center">Categorias</h3>
+
+			<div class="row">
+			
+			<?php
+				$args = array(
+ 					'taxonomy' => 'product_cat',
+ 					'number' => 2,
+ 					'hide_empty' => 0
+ 				);
+ 				$all_categories = get_categories( $args );
+ 				foreach ($all_categories as $cat) {
+ 				    $thumbnail_id = get_woocommerce_term_meta($cat->term_id,'thumbnail_id',true);
+ 					
+ 					?>
+				<div class="col-xs-12 col-sm-6">
+					<div class="category-home">
+ 						<img class="attachment-thumbnail wp-post-img" width="150" height="150" src="<?php echo wp_get_attachment_url($thumbnail_id,'thumbnail'); ?>" alt="">
+ 						<?php echo get_the_post_thumbnail($cat->term_id,'thumbnail'); ?>
+ 						<div class="category-opacity">
+ 							<a href="<?php echo get_term_link($cat->slug, 'product_cat') ?>"><?php echo $cat->name; ?></a> 							
+ 						</div>
+						
+					</div>
+					
+				</div>
+			<?php	
+ 				}
+			
+			?>
+		
+			</div>
+		
 		
 	</section>
 	<footer>

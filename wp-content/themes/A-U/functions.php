@@ -17,4 +17,11 @@
 	   add_theme_support( 'woocommerce' );
 	}
 
+	function remove_some_widgets(){
+
+	// Unregister some of the TwentyTen sidebars
+	unregister_sidebar( 'sidebar' );
+	}
+	add_action( 'widgets_init','remove_some_widgets');
+
 ?>	
