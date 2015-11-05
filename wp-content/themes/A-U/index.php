@@ -1,3 +1,6 @@
+<?php 
+//Template name: index 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,23 +63,84 @@
  						<img class="attachment-thumbnail wp-post-img" width="150" height="150" src="<?php echo wp_get_attachment_url($thumbnail_id,'thumbnail'); ?>" alt="">
  						<?php echo get_the_post_thumbnail($cat->term_id,'thumbnail'); ?>
  						<div class="category-opacity">
- 							<a href="<?php echo get_term_link($cat->slug, 'product_cat') ?>"><?php echo $cat->name; ?></a> 							
+ 							<h1><a href="<?php echo get_term_link($cat->slug, 'product_cat') ?>"><?php echo $cat->name; ?></a></h1> 							
  						</div>
 						
 					</div>
 					
 				</div>
+
 			<?php	
  				}
-			
 			?>
 		
 			</div>
+			
+			<h3 class="text-left">Nuestras Promociones</h3>
 		
+                   
+           
+               <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                 <?php 
+                 $slide  = CFS()->get('slideshow');
+                 if($slide){
+    				foreach ( $slide as $sl){ ?>
+                     	
+                   <div class="carousel-inner slides " role="listbox">
+                     <div class="item active">
+                       <img src="<?php echo $sl['imagen']; ?>" alt="">
+                       <div class="carousel-caption">
+                         <p><?php echo $sl['descripcion']; ?></p>
+                       </div>
+                     </div>
+       
+                   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                   </a>
+                   <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                   </a>
+                 
+               </div>
+             </div>
+               <?php 
+              		}
+              	}
+              	
+               ?>
+               <!--fin slide-->
+      
+			<h3 class="text-center">Nuestras Novedades</h3>
 		
+			<?php
+				$args = array(
+			'post_type' => 'product',
+			'posts_per_page' => 3
+			);
+				$loop = new WP_Query( $args );
+				if ( $loop->have_posts() ) {
+				while ( $loop->have_posts() ) : $loop->the_post();?>
+				
+				
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+					
+					<?php  wc_get_template_part( 'content','product' );
+				?>
+					
+				
+				</div>
+				<?php  
+		
+					endwhile;
+					} 
+					wp_reset_postdata();
+				?>
+
 	</section>
 	<footer>
-		
+
 	</footer>
 	<?php wp_footer() ?>
 </body>
